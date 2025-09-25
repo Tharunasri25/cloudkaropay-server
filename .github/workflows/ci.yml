@@ -1,0 +1,13 @@
+name: CI - Build Docker
+on:
+  push:
+    branches: [ main ]  # runs on push to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4    # get your repo code
+
+      - name: Build Docker image
+        run: docker build -t ck-server:${{ github.sha }} .
